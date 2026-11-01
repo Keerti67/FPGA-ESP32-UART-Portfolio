@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Engineering project portfolio: FPGA–ESP32 Full-Duplex UART Communication System">
+  <title>FPGA–ESP32 UART | Engineering Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="mobile-topbar">
+    <button id="menuToggle" class="icon-btn" aria-label="Open navigation">☰</button>
+    <span>FPGA–ESP32 UART</span>
+  </div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">KLE</div>
+      <div><strong>KLE TECHNOLOGICAL UNIVERSITY</strong><small>B. V. Bhoomaraddi Campus, Hubballi</small></div>
+    </div>
+    <div class="side-project">
+      <span class="eyebrow">ENGINEERING PORTFOLIO</span>
+      <h2>FPGA–ESP32<br>Full-Duplex UART</h2>
+      <p><span class="pulse"></span> Digital Design × Embedded Systems × Evidence</p>
+    </div>
+    <div class="nav-label">PROJECT RECORD / 16 SECTIONS</div>
+    <nav id="navigation">
+      <a class="nav-link active" href="#overview"><span>⌂</span> Project Overview</a>
+      <a class="nav-link" href="#team"><span>♧</span> Team and Roles</a>
+      <a class="nav-link" href="#problem"><span>◎</span> Problem and Need</a>
+      <a class="nav-link" href="#concept"><span>✧</span> Concept Choices</a>
+      <a class="nav-link" href="#requirements"><span>☷</span> Functional Requirements</a>
+      <a class="nav-link" href="#architecture"><span>⌘</span> Architecture and Subsystems</a>
+      <a class="nav-link" href="#design"><span>▦</span> Design and Calculations</a>
+      <a class="nav-link" href="#integration"><span>⌁</span> Foundation Integration Map</a>
+      <a class="nav-link" href="#build"><span>♧</span> Build and Verification</a>
+      <a class="nav-link" href="#results"><span>⌁</span> Predicted vs Measured</a>
+      <a class="nav-link" href="#failures"><span>⚒</span> Failures and Fixes</a>
+      <a class="nav-link" href="#notebook"><span>▤</span> Engineering Notebook</a>
+      <a class="nav-link" href="#reviews"><span>▣</span> Review Record</a>
+      <a class="nav-link" href="#reflection"><span>↗</span> Reflections and Forward Links</a>
+      <a class="nav-link" href="#demo"><span>▶</span> Final Demonstration</a>
+      <a class="nav-link" href="#files"><span>⇩</span> Project Files and References</a>
+    </nav>
+    <div class="sidebar-foot">PROJECT STATUS <span class="status-dot"></span> IN DEVELOPMENT</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><span class="top-kicker">ECE · DIGITAL SYSTEMS PROJECT</span><span class="top-sep">/</span><span>Academic Year 2026–27</span></div>
+      <div class="top-actions"><span class="tag">PROJECT RECORD</span><span class="tag tag-green">Working draft</span></div>
+    </header>
+
+    <section class="hero section" id="overview">
+      <div class="hero-copy">
+        <div class="eyebrow bright">FPGA × EMBEDDED COMMUNICATION</div>
+        <h1>FPGA–ESP32<br><em>Full-Duplex</em><br>UART System</h1>
+        <p class="hero-lead">A Verilog-based implementation of bidirectional asynchronous serial communication between a Digilent Arty A7 FPGA and an ESP32 microcontroller.</p>
+        <div class="hero-chips"><span>Project overview</span><span>16-section design record</span><span>Simulation-led verification</span></div>
+      </div>
+      <div class="hero-art" aria-label="Conceptual FPGA to ESP32 data flow illustration">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="device fpga"><small>FPGA BOARD</small><strong>ARTY A7</strong><span>Verilog HDL</span><div class="chip-grid"></div></div>
+        <div class="device esp"><small>MICROCONTROLLER</small><strong>ESP32</strong><span>Embedded C/C++</span><div class="esp-lines"></div></div>
+        <div class="data-line line-out"><b>TX → RX</b><span></span></div>
+        <div class="data-line line-back"><b>RX ← TX</b><span></span></div>
+        <div class="hero-note">UART · ASYNCHRONOUS · BIDIRECTIONAL</div>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <article class="metric"><span>BAUD RATE</span><strong>9600</strong><small>Baseline configuration · verify</small></article>
+      <article class="metric"><span>FPGA CLOCK</span><strong>100 MHz</strong><small>Arty A7 reference clock · verify</small></article>
+      <article class="metric"><span>FRAME FORMAT</span><strong>8-N-1</strong><small>8 data · no parity · 1 stop</small></article>
+      <article class="metric"><span>COMMUNICATION</span><strong>FULL DUPLEX</strong><small>Independent TX and RX paths</small></article>
+    </section>
+
+    <section class="wave-panel">
+      <div class="panel-heading"><div><span class="eyebrow bright">SIGNAL INSPECTOR</span><h2>UART waveform preview</h2></div><span class="live-label"><i></i> ILLUSTRATIVE</span></div>
+      <p class="muted">Conceptual timing view for a UART frame. Replace with your verified simulator waveform before presenting it as a project result.</p>
+      <div class="wave-legend"><span><i class="legend-blue"></i> TX line</span><span><i class="legend-teal"></i> RX line</span><span><i class="legend-purple"></i> Sample points</span></div>
+      <div class="wave-scroll"><svg id="waveSvg" viewBox="0 0 920 190" role="img" aria-label="Illustrative UART transmit and receive waveform"><g class="gridlines"></g><text x="12" y="43" class="wave-label">TX</text><text x="12" y="119" class="wave-label">RX</text><path id="txWave" class="tx-wave" d=""/><path id="rxWave" class="rx-wave" d=""/><g id="bitLabels"></g></svg></div>
+      <div class="wave-controls"><button id="animateWave" class="primary-btn">Replay frame</button><span id="waveState">Frame: idle → start → data → stop</span></div>
+    </section>
+
+    <section class="section intro-block" id="team">
+      <div class="section-head"><div><span class="eyebrow">01 / PEOPLE & OWNERSHIP</span><h2>Team and Roles</h2></div><span class="section-index">01</span></div>
+      <p class="section-intro">The project team and subsystem ownership are recorded below. Role allocation is intentionally left editable until responsibilities are confirmed by the team.</p>
+      <div class="record-strip"><span>DESIGN RECORD</span><b>DRAFT · EDITABLE SOURCE</b></div>
+      <div class="table-wrap"><table><thead><tr><th>Team member</th><th>USN</th><th>Roll number</th><th>Subsystem ownership</th></tr></thead><tbody>
+        <tr><td>Rutvik</td><td>01FE24BEC148</td><td>207</td><td><input aria-label="Rutvik subsystem ownership" placeholder="To be assigned"></td></tr>
+        <tr><td>Vinayak Bhajantri</td><td>01FE24BEC149</td><td>208</td><td><input aria-label="Vinayak subsystem ownership" placeholder="To be assigned"></td></tr>
+        <tr><td>Keerti Betageri</td><td>01FE24BEC136</td><td>254</td><td><input aria-label="Keerti subsystem ownership" placeholder="To be assigned"></td></tr>
+        <tr><td>Adithya</td><td>01FE24BEC078</td><td>235</td><td><input aria-label="Adithya subsystem ownership" placeholder="To be assigned"></td></tr>
+      </tbody></table></div>
+      <div class="role-grid">
+        <article class="role-card"><span>MEMBER 01</span><h3>Rutvik</h3><p>Subsystem ownership</p><input placeholder="Enter role / responsibility"></article>
+        <article class="role-card"><span>MEMBER 02</span><h3>Vinayak Bhajantri</h3><p>Subsystem ownership</p><input placeholder="Enter role / responsibility"></article>
+        <article class="role-card"><span>MEMBER 03</span><h3>Keerti Betageri</h3><p>Subsystem ownership</p><input placeholder="Enter role / responsibility"></article>
+        <article class="role-card"><span>MEMBER 04</span><h3>Adithya</h3><p>Subsystem ownership</p><input placeholder="Enter role / responsibility"></article>
+      </div>
+    </section>
+
+    <section class="section" id="problem">
+      <div class="section-head"><div><span class="eyebrow">02 / ENGINEERING NEED</span><h2>Problem and Need</h2></div><span class="section-index">02</span></div>
+      <div class="content-grid"><article class="content-card feature-card"><span class="card-kicker">PROBLEM DEFINITION</span><h3>Reliable bidirectional communication across two different platforms</h3><p>Communication between an FPGA and a microcontroller requires compatible serial settings, accurate timing and correct interpretation of data frames. Implementing both transmission and reception introduces separate logic paths and synchronization requirements.</p></article><article class="content-card"><span class="card-kicker">ENGINEERING NEED</span><ul><li>Connect programmable logic with an embedded controller.</li><li>Demonstrate UART transmission and reception.</li><li>Verify baud timing and frame structure.</li><li>Evaluate integration through simulation and hardware tests.</li></ul></article></div>
+      <div class="record-strip"><span>SUCCESS CRITERIA</span><b>TO BE VERIFIED WITH EVIDENCE</b></div>
+      <div class="criteria-grid"><div>01 <strong>Correct frame generation</strong><small>Start, data and stop bits</small></div><div>02 <strong>Reliable reception</strong><small>Correct data reconstruction</small></div><div>03 <strong>Two-way exchange</strong><small>FPGA ↔ ESP32</small></div><div>04 <strong>Evidence-backed results</strong><small>Simulation and hardware proof</small></div></div>
+    </section>
+
+    <section class="section" id="concept">
+      <div class="section-head"><div><span class="eyebrow">03 / DESIGN RATIONALE</span><h2>Concept Choices</h2></div><span class="section-index">03</span></div>
+      <p class="section-intro">The choices below describe the intended implementation direction. Update them if the final hardware or software design differs.</p>
+      <div class="choice-grid"><article class="choice-card selected"><span class="choice-status">SELECTED APPROACH</span><h3>UART serial interface</h3><p>Asynchronous serial communication with independent transmit and receive paths.</p></article><article class="choice-card"><span class="choice-status">FPGA IMPLEMENTATION</span><h3>Verilog HDL</h3><p>Dedicated RTL modules for baud timing, transmission and reception.</p></article><article class="choice-card"><span class="choice-status">CONTROLLER</span><h3>ESP32 UART peripheral</h3><p>Embedded software uses the microcontroller's hardware UART interface.</p></article></div>
+    </section>
+
+    <section class="section" id="requirements">
+      <div class="section-head"><div><span class="eyebrow">04 / SYSTEM SPECIFICATION</span><h2>Functional Requirements</h2></div><span class="section-index">04</span></div>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Requirement</th><th>Verification method</th><th>Status</th></tr></thead><tbody>
+        <tr><td>FR-01</td><td>FPGA transmits UART serial data to ESP32.</td><td>Simulation + hardware test</td><td><span class="pill pending">Pending evidence</span></td></tr>
+        <tr><td>FR-02</td><td>FPGA receives UART serial data from ESP32.</td><td>Simulation + hardware test</td><td><span class="pill pending">Pending evidence</span></td></tr>
+        <tr><td>FR-03</td><td>Both endpoints use matching UART settings.</td><td>Configuration inspection</td><td><span class="pill pending">To confirm</span></td></tr>
+        <tr><td>FR-04</td><td>TX and RX paths operate independently.</td><td>Concurrent transfer test</td><td><span class="pill pending">Pending evidence</span></td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="section-head"><div><span class="eyebrow">05 / SYSTEM STRUCTURE</span><h2>Architecture and Subsystems</h2></div><span class="section-index">05</span></div>
+      <div class="architecture">
+        <div class="arch-device"><span>PROGRAMMABLE LOGIC</span><h3>Digilent Arty A7</h3><p>UART TX · UART RX · Baud generator</p></div>
+        <div class="arch-links"><div class="arrow tx">FPGA TX → ESP32 RX</div><div class="arrow rx">ESP32 TX → FPGA RX</div><div class="ground">Common signal reference / GND</div></div>
+        <div class="arch-device esp-device"><span>EMBEDDED CONTROLLER</span><h3>ESP32</h3><p>UART peripheral · Embedded application</p></div>
+      </div>
+      <p class="note">Conceptual architecture only. Add the verified FPGA pin constraints, ESP32 GPIO assignments and electrical-level details before treating this as the final wiring diagram.</p>
+      <div class="subsystem-grid"><div><b>01 / Baud-rate generator</b><p>Creates the UART timing enable from the FPGA clock.</p></div><div><b>02 / UART transmitter</b><p>Frames parallel data into serial output.</p></div><div><b>03 / UART receiver</b><p>Samples serial input and reconstructs received data.</p></div><div><b>04 / ESP32 interface</b><p>Sends and receives bytes using the configured UART peripheral.</p></div></div>
+    </section>
+
+    <section class="section" id="design">
+      <div class="section-head"><div><span class="eyebrow">06 / ENGINEERING DESIGN</span><h2>Design and Calculations</h2></div><span class="section-index">06</span></div>
+      <div class="formula-card"><span>UART BIT PERIOD</span><strong>T<sub>bit</sub> = 1 / Baud rate</strong><p>At a 9600 bit/s baseline, one bit period is approximately 104.17 μs.</p></div>
+      <div class="formula-card"><span>FPGA CLOCKS PER BIT</span><strong>N = f<sub>clk</sub> / Baud rate</strong><p>For a 100 MHz clock and 9600 baud, N ≈ 10,416.67. The implementation must handle integer division and timing error deliberately.</p></div>
+      <p class="note">These are reference calculations based on the baseline values shown on the overview. Confirm the actual clock and baud-rate settings in your RTL and ESP32 code.</p>
+    </section>
+
+    <section class="section" id="integration">
+      <div class="section-head"><div><span class="eyebrow">07 / FOUNDATION INTEGRATION</span><h2>Foundation Integration Map</h2></div><span class="section-index">07</span></div>
+      <div class="integration-grid"><div><b>Digital design</b><p>Finite-state machines, counters and sequential logic.</p></div><div><b>Communication systems</b><p>Asynchronous serial framing and baud timing.</p></div><div><b>Embedded systems</b><p>UART peripheral configuration and byte handling.</p></div><div><b>Verification</b><p>Testbenches, waveform inspection and test cases.</p></div></div>
+    </section>
+
+    <section class="section" id="build">
+      <div class="section-head"><div><span class="eyebrow">08 / IMPLEMENTATION</span><h2>Build and Verification</h2></div><span class="section-index">08</span></div>
+      <div class="timeline"><div><b>01</b><span><strong>RTL development</strong><small>Develop and compile baud generator, TX and RX modules.</small></span></div><div><b>02</b><span><strong>Simulation</strong><small>Run testbench scenarios and inspect waveforms.</small></span></div><div><b>03</b><span><strong>ESP32 integration</strong><small>Configure UART settings and establish serial connections.</small></span></div><div><b>04</b><span><strong>Hardware validation</strong><small>Test data transfer in both directions and record observations.</small></span></div></div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="section-head"><div><span class="eyebrow">09 / EVIDENCE COMPARISON</span><h2>Predicted vs Measured</h2></div><span class="section-index">09</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Parameter</th><th>Expected / target</th><th>Measured result</th><th>Evidence</th></tr></thead><tbody>
+        <tr><td>Baud rate</td><td>9600 bit/s baseline</td><td><input placeholder="Enter measured value"></td><td><input placeholder="Waveform / test link"></td></tr>
+        <tr><td>FPGA → ESP32</td><td>Correct byte reception</td><td><input placeholder="Enter observation"></td><td><input placeholder="Evidence link"></td></tr>
+        <tr><td>ESP32 → FPGA</td><td>Correct byte reception</td><td><input placeholder="Enter observation"></td><td><input placeholder="Evidence link"></td></tr>
+        <tr><td>Full-duplex test</td><td>Independent two-way transfer</td><td><input placeholder="Enter observation"></td><td><input placeholder="Evidence link"></td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="section" id="failures">
+      <div class="section-head"><div><span class="eyebrow">10 / DEBUGGING RECORD</span><h2>Failures and Fixes</h2></div><span class="section-index">10</span></div>
+      <p class="section-intro">Record real issues encountered during coding, simulation and hardware integration. Keep the cause, corrective action and proof together.</p>
+      <div class="table-wrap"><table><thead><tr><th>Issue observed</th><th>Root cause</th><th>Corrective action</th><th>Evidence</th></tr></thead><tbody><tr><td><input placeholder="Describe issue"></td><td><input placeholder="Cause"></td><td><input placeholder="Fix applied"></td><td><input placeholder="Screenshot / link"></td></tr><tr><td><input placeholder="Describe issue"></td><td><input placeholder="Cause"></td><td><input placeholder="Fix applied"></td><td><input placeholder="Screenshot / link"></td></tr></tbody></table></div>
+    </section>
+
+    <section class="section" id="notebook">
+      <div class="section-head"><div><span class="eyebrow">11 / DEVELOPMENT LOG</span><h2>Engineering Notebook</h2></div><span class="section-index">11</span></div>
+      <div class="editable-list"><label>Entry date<input type="date"></label><label>Work completed<textarea placeholder="Describe what was done, what was observed and what remains unresolved."></textarea></label><label>Evidence / file link<input placeholder="Paste a Drive, GitHub or image link"></label></div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="section-head"><div><span class="eyebrow">12 / MILESTONES</span><h2>Review Record</h2></div><span class="section-index">12</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Review</th><th>Date</th><th>Feedback</th><th>Action / status</th></tr></thead><tbody><tr><td>Review 1</td><td><input type="date"></td><td><input placeholder="Feedback received"></td><td><input placeholder="Action taken"></td></tr><tr><td>Review 2</td><td><input type="date"></td><td><input placeholder="Feedback received"></td><td><input placeholder="Action taken"></td></tr><tr><td>Final review</td><td><input type="date"></td><td><input placeholder="Feedback received"></td><td><input placeholder="Action taken"></td></tr></tbody></table></div>
+    </section>
+
+    <section class="section" id="reflection">
+      <div class="section-head"><div><span class="eyebrow">13 / LEARNING & NEXT STEPS</span><h2>Reflections and Forward Links</h2></div><span class="section-index">13</span></div>
+      <div class="reflection-grid"><label>What worked well<textarea placeholder="Record technical strengths supported by evidence."></textarea></label><label>What needs improvement<textarea placeholder="Record limitations and unresolved issues."></textarea></label><label>Future improvements<textarea placeholder="List realistic next steps."></textarea></label></div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="section-head"><div><span class="eyebrow">14 / PROJECT PROOF</span><h2>Final Demonstration</h2></div><span class="section-index">14</span></div>
+      <div class="upload-placeholder"><div class="upload-icon">▶</div><h3>Hardware demonstration</h3><p>Add your final demo video, board setup photographs and proof of two-way data exchange here.</p><input placeholder="Paste YouTube / Drive video link"><input placeholder="Paste hardware evidence link"></div>
+    </section>
+
+    <section class="section" id="files">
+      <div class="section-head"><div><span class="eyebrow">15 / REPRODUCIBILITY</span><h2>Project Files and References</h2></div><span class="section-index">15</span></div>
+      <div class="file-grid"><label>Verilog source code<input placeholder="GitHub repository or file link"></label><label>Testbench and simulation<input placeholder="Simulation project / waveform link"></label><label>ESP32 firmware<input placeholder="Firmware source link"></label><label>Constraints and pin map<input placeholder="XDC / pin mapping link"></label><label>Datasheets and references<input placeholder="Datasheet / documentation links"></label><label>Project report<input placeholder="Final report link"></label></div>
+    </section>
+
+    <footer><span>FPGA–ESP32 UART ENGINEERING PORTFOLIO</span><span>Designed as a living technical record · Update with verified evidence</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
